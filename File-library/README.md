@@ -27,3 +27,5 @@
 我们都知道如果要上传一个文件，需要把 <code>form</code> 标签的 <code>enctype</code> 设置为 <code>multipart/form-data</code>，同时 <code>method</code> 必须为 <code>post</code> 方法。
 
 那么 <code>multipart/form-data</code> 表示什么呢？
+
+> multipart互联网上的混合资源，就是资源由多种元素组成，form-data表示可以使用HTML Forms 和 POST 方法上传文件，具体的定义可以参考RFC 7578。
