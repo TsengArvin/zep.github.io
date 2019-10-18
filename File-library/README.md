@@ -25,3 +25,5 @@
 原理很简单，就是根据 http 协议的规范和定义，完成请求消息体的封装和消息体的解析，然后将二进制内容保存到文件。
 
 我们都知道如果要上传一个文件，需要把 <code>form</code> 标签的 <code>enctype</code> 设置为 <code>multipart/form-data</code>，同时 <code>method</code> 必须为 <code>post</code> 方法。
+
+那么 <code>multipart/form-data</code> 表示什么呢？
