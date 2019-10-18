@@ -12,5 +12,5 @@ Document Library - 文档库
 
 ## 二 文件目录
 | 目录  | 描述 |
-|--------|----------   |
-| fileUp | file upload |
+|--------|-------------|
+| fileUp | file upload | 文件上传
