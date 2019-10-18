@@ -29,3 +29,7 @@
 那么 <code>multipart/form-data</code> 表示什么呢？
 
 > multipart互联网上的混合资源，就是资源由多种元素组成，form-data表示可以使用HTML Forms 和 POST 方法上传文件，具体的定义可以参考RFC 7578。
+
+<code>multipart/form-data</code> 结构
+看下 `http` 请求的消息体：
+![http请求的消息体](../assets/img/http.request.jpg)
