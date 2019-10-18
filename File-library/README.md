@@ -32,4 +32,4 @@
 
 <code>multipart/form-data</code> 结构
 看下 `http` 请求的消息体：
-![http请求的消息体](../assets/img/http.request.jpg)
+![http请求的消息体](https://github.com/Zeeeping/zep.github.io/blob/master/assets/img/http.request.jpg)
