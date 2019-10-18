@@ -36,7 +36,7 @@
 ![http请求的消息体](https://github.com/Zeeeping/zep.github.io/blob/master/assets/img/http.request.jpg)
 
 * 请求头：
- <code>Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryDCntfiXcSkPhS4PN</code> 表示本次请求要上传的文件，其中<code>boundary<code>表示分隔符，如果要上传多个表单项，就需要使用<code>boundary<code>分割，每个表单项由------xxx开始，以------xxx结束。
+ <code>Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryDCntfiXcSkPhS4PN</code> 表示本次请求要上传的文件，其中 <code>boundary</code> 表示分隔符，如果要上传多个表单项，就需要使用 <code>boundary</code> 分割，每个表单项由------xxx开始，以------xxx结束。
 
  * 消息体 - Form Data 部分
   每一个表单项又由 <code>Content-Type</code> 和 <code>Content-Disposition</code> 组成。
