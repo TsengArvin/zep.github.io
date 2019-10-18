@@ -31,5 +31,16 @@
 > multipart互联网上的混合资源，就是资源由多种元素组成，form-data表示可以使用HTML Forms 和 POST 方法上传文件，具体的定义可以参考RFC 7578。
 
 <code>multipart/form-data</code> 结构
-看下 `http` 请求的消息体：
+看下 <code>http</code> 请求的消息体：
+
 ![http请求的消息体](https://github.com/Zeeeping/zep.github.io/blob/master/assets/img/http.request.jpg)
+
+* 请求头：
+ <code>Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryDCntfiXcSkPhS4PN</code> 表示本次请求要上传的文件，其中<code>boundary<code>表示分隔符，如果要上传多个表单项，就需要使用<code>boundary<code>分割，每个表单项由------xxx开始，以------xxx结束。
+
+ * 消息体 - Form Data 部分
+  每一个表单项又由 <code>Content-Type</code> 和 <code>Content-Disposition</code> 组成。
+
+  <code>Content-Type</code>：表示当前的内容的 MIME 类型，是图片还是文本还是二进制数据。
+
+  <code>Content-Disposition: form-data</code> 为固定值，表示一个表单元素，<code>name</code> 表示表单元素的 名称，回车换行后面就是 <code>name</code> 的值，如果是上传文件就是文件的二进制内容。
