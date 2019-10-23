@@ -1,0 +1,28 @@
+{
+  "name": "zep.github.io",
+  "version": "1.0.0",
+  "description": "前端GitHub博客",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zeeeping/zep.github.io.git"
+  },
+  "keywords": [
+    "学习",
+    "前端"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zeeeping/zep.github.io/issues"
+  },
+  "homepage": "https://github.com/Zeeeping/zep.github.io#readme",
+  "dependencies": {
+    "koa-body": "^4.1.1",
+    "koa-static": "^5.0.0",
+    "koa2": "^2.0.0-alpha.7"
+  }
+}
