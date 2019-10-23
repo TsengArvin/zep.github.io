@@ -13,11 +13,19 @@
 
   <script>
     function upload() {
+      // 获得文件对象列表，类数组类型。
       var file = document.getElementById('f1').files;
+
+      if (!file.length) {
+        alert('请选择文件！');
+        return;
+      }
+
+      // 构建formdata对象
       var fData = new FormData();
 
       for (var key in file) {
-        fData.append('f1', file[key])
+        fData.append('f1', file[key]);
       }
 
       // 构建xhr对象
