@@ -1,0 +1,9 @@
+node_modules
+.vscode
+npm-debug.log
+npm-debug.log.*
+.idea
+/dist
+build
+package-lock.json
+build/*
