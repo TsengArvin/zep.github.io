@@ -176,4 +176,26 @@
       ctx.body = `{
         "fileUrl": ${JSON.stringify(result)}
       }`;
-    })
+    });
+
+<br>
+
+#### <span id="3-3">无刷新上传</span>
+
+无刷新上传文件要用到 `XMLHttpRequest`，在ie也有这个对象，但是只支持文本数据传输，无法用来读取和上传二进制数据。
+
+现在已然升级到了 `XMLHttpRequest2`，可以读取和上传二进制数据，也可以使用 `FormData` 对象管理表单数据。
+
+当然也可以使用 `fetch` 进行上传。
+
+`html`
+
+    <div>
+      选择文件(可多选):
+      <input type="file" id="f1" multiple/> <br />
+      <button type="button" id="btn-submit">上 传</button>
+    </div>
+
+`js`
+
+    

@@ -19,26 +19,41 @@ app.use(koaBody({
 }));
 
 // 开启静态文件访问
-// app.use(koaStatic(path.resolve(__dirname, './static')));
+// 例如放在当前目录static中的localhost:3000/html/index.html
+app.use(koaStatic(path.resolve(__dirname, './static')));
 
 app.use(ctx => {
   var file = ctx.request.files.f1; // 文件对象
-  var path = file.path; // 保存目录下得文件名
-  var fname = file.name; // 原文件名称
+  var isArray = Array.isArray(file);
+  var result = isArray ? [] : {};
 
-  if (file.size > 0 && path) {
-    // 得到扩展名
-    var extArr = fname.split('.');
-    var ext = extArr[extArr.length - 1];
-    var nextPath = path + '.' + ext;
+  if (isArray) {
+    file && file.forEach(item => {
+      result.push(getExt(item));
+    })
+  } else {
+    result = getExt(file);
+  }
 
-    // 重命名文件
-    fs.renameSync(path, nextPath);
+  function getExt(item) {
+    var path = item.path; // 保存目录下得文件名
+    var fname = item.name; // 原文件名称
+
+    if (item.size > 0 && path) {
+      // 得到扩展名
+      var extArr = fname.split('.');
+      var ext = extArr[extArr.length - 1];
+      var nextPath = path + '.' + ext;
+
+      // 重命名文件
+      fs.renameSync(path, nextPath);
+      return uploadHost + nextPath.slice(nextPath.lastIndexOf('/') + 1);
+    }
   }
 
   ctx.body = `{
-    "fileUrl": "${uploadHost}${nextPath.slice(nextPath.lastIndexOf('/') + 1)}"
-  }`
+    "fileUrl": ${JSON.stringify(result)}
+  }`;
 })
 
 var server = http.createServer(app.callback());
