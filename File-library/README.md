@@ -196,7 +196,7 @@
       <button type="button" id="btn-submit">上 传</button>
     </div>
 
-`js`
+`xhr js`
 
     function upload() {
       // 获得文件对象列表，类数组类型。
@@ -229,9 +229,25 @@
         if (xhr.readyState === 4 && xhr.status === 200) {
           var obj = JSON.parse(xhr.responseText); // 拿到响应文本
           console.log(obj);
-          if (obj.fileUrl.length) alert('上传成功！')
+          if (obj.fileUrl.length) alert('上传成功！');
         }
       }
     }
 
     document.getElementById('btn-submit').addEventListener('click', upload);
+
+`fetch js`
+
+    function upload() {
+      // ...前面一样，代码省略了。
+      // 把构建xhr对象这块直接换成fetch
+
+      // 服务器路径必须加上http或者https
+      fetch('http://localhost:3000', {
+        method: 'post',
+        body: fData
+      }).then(res => res.json()) // 没有括号，直接返回promise
+        .then(res =>  {
+          if (res.fileUrl.length) alert('上传成功！');
+      }).catch(err => console.error('Error: ', err));
+    }
