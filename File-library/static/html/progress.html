@@ -63,8 +63,8 @@
     // 记得建立与服务端的联系
     xhr.open('post', 'http://localhost:3000', true);
 
-    xhr.onprogress = updateProgress; // 请求完成前周期性调用函数
-    xhr.upload.onprogress = updateProgress;
+    xhr.onprogress = updateProgress; // 完成上传之后的回调函数
+    xhr.upload.onprogress = updateProgress; // 请求完成前周期性调用函数
 
     function updateProgress(event) {
       if (event.lengthComputable) {
