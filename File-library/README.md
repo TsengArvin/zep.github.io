@@ -188,6 +188,8 @@
 
 当然也可以使用 `fetch` 进行上传。
 
+#####`index.html`
+
 `html`
 
     <div>
@@ -236,6 +238,8 @@
 
     document.getElementById('btn-submit').addEventListener('click', upload);
 
+#####`fetch.html`
+
 `fetch js`
 
     function upload() {
@@ -253,6 +257,8 @@
     }
 
 ### <span id="4">文件上传接口 之 上传进度查看</span>
+
+#####`progress.html`
 
 `html`
 
