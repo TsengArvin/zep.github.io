@@ -251,3 +251,97 @@
           if (res.fileUrl.length) alert('上传成功！');
       }).catch(err => console.error('Error: ', err));
     }
+
+### <span id="4">文件上传接口 之 上传进度查看</span>
+
+`html`
+
+    <div>
+      选择文件(可多选):
+      <input type="file" id="f1" multiple /> <br />
+      <div id="progress">
+        <span class="red"></span>
+      </div>
+      <button type="button" id="btn-submit">上 传</button>
+    </div>
+
+`css`
+
+    #progress {
+      width: 300px;
+      height: 20px;
+    }
+
+    #progress span {
+      display: block;
+      width: 0;
+      height: 20px;
+    }
+
+    .red {
+      background: red;
+    }
+
+    .green {
+      background: green;
+    }
+
+`js`
+
+    function upload() {
+      // 获得进度条元素
+      var progressSpan = document.getElementById('progress').firstElementChild;
+      progressSpan.style.width = 0;
+      progressSpan.classList.remove('green');
+
+      // 获得文件对象列表，类数组类型。
+      var file = document.getElementById('f1').files;
+
+      if (!file.length) {
+        alert('请选择文件！');
+        return;
+      }
+
+      // 构建formdata对象
+      var fData = new FormData();
+
+      for (var key in file) {
+        fData.append('f1', file[key]);
+      }
+
+      // 构建xhr对象
+      var xhr = new XMLHttpRequest();
+
+      // 记得建立与服务端的联系
+      xhr.open('post', 'http://localhost:3000', true);
+
+      xhr.onprogress = updateProgress; // 请求完成前周期性调用函数
+      xhr.upload.onprogress = updateProgress;
+
+      function updateProgress(event) {
+        if (event.lengthComputable) {
+          var completedPercent = (event.loaded / event.total * 100).toFixed(2);
+          progressSpan.style.width = completedPercent + '%';
+          progressSpan.innerHTML = completedPercent + '%';
+          if (completedPercent > 90) { //进度条变色
+            progressSpan.classList.add('green');
+          }
+          console.log('已上传', completedPercent);
+        }
+      }
+
+      // 把数据发送到服务端，发送时，Content-Type默认就是: multipart/form-data;
+      xhr.send(fData);
+
+      // xhr监听状态码变化的回调函数
+      xhr.onreadystatechange = function() {
+        console.log('state change', xhr.readyState);
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var obj = JSON.parse(xhr.responseText); // 拿到响应文本
+          console.log(obj);
+          if (obj.fileUrl.length) alert('上传成功！');
+        }
+      }
+    }
+
+    document.getElementById('btn-submit').addEventListener('click', upload);
